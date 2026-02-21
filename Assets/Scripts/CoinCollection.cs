@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CoinCollection : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Something is HIT");
+        if (other.gameObject.tag == "Coin")
+        {
+            Debug.Log("Coin is hit");
+            Destroy(other.gameObject);
+        }
     }
 }
