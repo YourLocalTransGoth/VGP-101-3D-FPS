@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI EnNum;
 
 
+
     // Start is called before the first frame update
     void Start()
     {

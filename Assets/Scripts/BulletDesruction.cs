@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletDesctrucion : MonoBehaviour
 
 {
-    public float bulletSpan = 5;
+    public float bulletSpan = 5000;
     public PlayerMovement player;
 
     // Start is called before the first frame update
