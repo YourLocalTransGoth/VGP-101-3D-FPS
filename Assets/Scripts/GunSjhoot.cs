@@ -17,7 +17,7 @@ public class GunSjhoot : MonoBehaviour
         {
             var bullet = Instantiate(BulletPrefab, BulletSpawnPoint.position, BulletSpawnPoint.rotation); // makes a new bullet
             bullet.SetActive(true); // inactive bullet made active.
-            bullet.GetComponent<Rigidbody>().velocity = Vector3.forward * BulletSpeed; // new Vector3 (0,0,30), gives bullet speed.
+            bullet.GetComponent<Rigidbody>().velocity = BulletSpawnPoint.forward * BulletSpeed;
             Debug.Log("we are shooting");
             
         }

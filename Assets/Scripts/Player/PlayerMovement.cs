@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
 
-        mytf.Translate(Vector3.forward * horizontalInput * Time.deltaTime * 10);
+        mytf.Translate(Vector3.forward * -horizontalInput * Time.deltaTime * 10);
         mytf.Translate(Vector3.right * verticalInput * Time.deltaTime * 10);
 
         EnNum.text = "Num of Enemy destroyed: " + numOfEnDest;
