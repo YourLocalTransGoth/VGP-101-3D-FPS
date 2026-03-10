@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;   
 
 public class GunSjhoot : MonoBehaviour
 {
+    // public SoundPlayer SoundPlayer;
     public Transform BulletSpawnPoint;
     public GameObject BulletPrefab;
-
     public float BulletSpeed = 30.0f;
+    public TextMeshProUGUI enemyText;
+    public int enemyDestroyed = 0;
+    public float firingDelay = 0f;
     
 
     // Update is called once per frame
