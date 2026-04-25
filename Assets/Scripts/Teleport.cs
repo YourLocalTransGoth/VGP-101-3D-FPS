@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private Teleport destination;
@@ -9,11 +9,17 @@ public class Teleport : MonoBehaviour
     [SerializeField] private float cooldownSeconds = 0.2f;
 
     private Collider portalCollider;
+    private Rigidbody portalRigidbody;
 
     private void Awake()
     {
         portalCollider = GetComponent<Collider>();
         portalCollider.isTrigger = true;
+
+        portalRigidbody = GetComponent<Rigidbody>();
+        portalRigidbody.isKinematic = true;
+        portalRigidbody.useGravity = false;
+        portalRigidbody.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +29,7 @@ public class Teleport : MonoBehaviour
             return;
         }
 
-        Transform traveler = other.transform.root;
+        Transform traveler = ResolveTraveler(other);
 
         if (!IsValidTraveler(other, traveler))
         {
@@ -43,6 +49,22 @@ public class Teleport : MonoBehaviour
 
         traveler.position = destination.transform.position + destination.transform.forward * exitOffset;
         stamp.MarkTeleported();
+    }
+
+    private Transform ResolveTraveler(Collider other)
+    {
+        if (other.attachedRigidbody != null)
+        {
+            return other.attachedRigidbody.transform;
+        }
+
+        CharacterController characterController = other.GetComponentInParent<CharacterController>();
+        if (characterController != null)
+        {
+            return characterController.transform;
+        }
+
+        return other.transform.root;
     }
 
     private bool IsValidTraveler(Collider other, Transform traveler)
