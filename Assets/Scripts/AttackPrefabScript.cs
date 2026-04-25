@@ -9,7 +9,12 @@ public class AttackPrefabScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
+        GameObject healthBarObject = GameObject.Find("HealthBar");
+        if (healthBarObject != null)
+        {
+            healthBar = healthBarObject.GetComponent<HealthBar>();
+        }
+
         Destroy(gameObject, life);
     }
 

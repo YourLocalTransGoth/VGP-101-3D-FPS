@@ -8,13 +8,13 @@ public class practiceL10 : MonoBehaviour
         string text2 = "canada";
         string text3 = "12321";
         bool isPalindrome = IsPalindrome(text);
-        Debug.Log(text + " is palindrome: " + isPalindrome);
+            // Debug.Log(text + " is palindrome: " + isPalindrome);
 
         isPalindrome = IsPalindrome(text2);
-        Debug.Log(text2 + " is palindrome: " + isPalindrome);
+        //Debug.Log(text2 + " is palindrome: " + isPalindrome);
 
         isPalindrome = IsPalindrome(text3);
-        Debug.Log(text3 + " is palindrome: " + isPalindrome);
+       //Debug.Log(text3 + " is palindrome: " + isPalindrome);
     }
 
     private bool IsPalindrome(string s)

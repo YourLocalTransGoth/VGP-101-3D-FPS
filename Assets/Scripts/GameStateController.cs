@@ -32,7 +32,6 @@ public class GameStateController : MonoBehaviour
 
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
-    [SerializeField] private string playerObjectName = "Player";
 
     private const string SAVE_KEY = "SavedLevelName";
 

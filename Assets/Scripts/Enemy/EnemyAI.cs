@@ -153,9 +153,23 @@ public class EnemyAI : MonoBehaviour
 
     void Attack()
         {
+            if (AttackPrefab == null)
+            {
+                Debug.LogWarning("EnemyAI: AttackPrefab is not assigned.");
+                return;
+            }
+
         
             // anim.SetTrigger("attack");
-            Rigidbody rb = Instantiate(AttackPrefab, transform.position + transform.forward * 1f, Quaternion.identity).GetComponent<Rigidbody>();
+            GameObject attackObject = Instantiate(AttackPrefab, transform.position + transform.forward * 1f, Quaternion.identity);
+            Rigidbody rb = attackObject.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                Debug.LogWarning("EnemyAI: AttackPrefab is missing a Rigidbody.");
+                Destroy(attackObject);
+                return;
+            }
+
             rb.gameObject.SetActive(true);
             rb.AddForce(transform.forward * attackSpeedForward, ForceMode.Impulse);
             rb.AddForce(transform.up * attackSpeedUp, ForceMode.Impulse);
