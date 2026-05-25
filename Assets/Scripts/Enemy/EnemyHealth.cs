@@ -9,10 +9,12 @@ public class EnemyHealth : MonoBehaviour
 
     private float currentHealth;
     private Transform healthBar;
+    private AudioPlayer audioPlayer;
 
     private void Awake()
     {
         currentHealth = Mathf.Max(1f, maxHealth);
+        audioPlayer = FindObjectOfType<AudioPlayer>();
 
         if (healthBarSprite != null)
         {
@@ -43,6 +45,11 @@ public class EnemyHealth : MonoBehaviour
             if (player != null)
             {
                 player.numOfEnDest++;
+            }
+
+            if (audioPlayer != null)
+            {
+                audioPlayer.PlayEnemyDyingSound();
             }
 
             Destroy(gameObject);
